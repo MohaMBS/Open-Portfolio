@@ -1,0 +1,33 @@
+---
+import { config } from "@/utils/config";
+---
+
+<!doctype html>
+<html lang={config.i18n.defaultLocale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <meta
+      http-equiv="refresh"
+      content={`0;url=/${config.i18n.defaultLocale}`}
+    />
+  </head>
+  <body class="bg-black">
+    <script
+      is:inline
+      define:vars={{
+        defaultLocale: config.i18n.defaultLocale,
+        supportedLocales: config.i18n.locales,
+      }}
+    >
+      const savedLang = localStorage.getItem("preferred_lang");
+      const browserLang = navigator.language.split("-")[0];
+      const targetLang = savedLang || browserLang || defaultLocale;
+      const finalLang = supportedLocales.includes(targetLang)
+        ? targetLang
+        : defaultLocale;
+      window.location.href = `/${finalLang}`;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+    lang: string;
+    image?: string;
+    url?: string;
+}
+
+const { title, description, lang, image, url = Astro.url.href } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:locale" content={lang} />
+{image && <meta property="og:image" content={image} />}
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+{image && <meta property="twitter:image" content={image} />}
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />

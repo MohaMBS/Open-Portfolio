@@ -1,0 +1,79 @@
+---
+import { loadCv } from "@/utils/loadCv";
+import { config } from "@/utils/config";
+import OptionsFab from "@/components/OptionsFab.astro";
+import Seo from "@/components/seo/Seo.astro";
+import "@/styles/global.css";
+
+// IMPORT THEME INDEX (The dynamic loader)
+import { themes } from "@/themes";
+
+//Static path generation
+export function getStaticPaths() {
+  return config.i18n.locales.map((lang) => ({
+    params: { lang },
+  }));
+}
+
+const { lang } = Astro.params;
+const cv = await loadCv(lang);
+
+// ----------------------------------------------------------------------------
+// THEME & FONT RESOLUTION
+// ----------------------------------------------------------------------------
+const themeName = config.theme.name;
+//Get the active theme from our index (Safe fallback to minimal)
+const activeTheme = themes[themeName] || themes["minimal"];
+if (!activeTheme) {
+  throw new Error(`CRITICAL: Theme '${themeName}' not found.`);
+}
+const { component: ThemeComponent, manifest } = activeTheme;
+//Resolve Fonts (User Config > Theme Manifest > System Default)
+const userFonts = config.ui?.fonts || {};
+const themeFonts = manifest.fonts || {};
+
+const fonts = {
+  url: themeFonts.googleFontsUrl || userFonts.googleFontsUrl,
+  body: themeFonts.body || userFonts.body || "sans-serif",
+  heading: themeFonts.heading || userFonts.heading || "sans-serif",
+  mono: themeFonts.mono || userFonts.mono || "monospace",
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <Seo
+      title={`${cv.basics.name} - ${cv.basics.label}`}
+      description={cv.basics.summary}
+      lang={lang}
+      image={cv.basics.image}
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    {/* Load Google Fonts only if URL exists */}
+    {fonts.url && <link href={fonts.url} rel="stylesheet" />}
+
+    {/* Inject CSS Variables for Tailwind */}
+    <style
+      define:vars={{
+        fontMain: fonts.body,
+        fontHeading: fonts.heading,
+        fontMono: fonts.mono,
+      }}
+    >
+      :root {
+        --font-main: var(--fontMain);
+        --font-heading: var(--fontHeading);
+        --font-mono: var(--fontMono);
+      }
+    </style>
+  </head>
+
+  <body>
+    <OptionsFab />
+    <ThemeComponent cv={cv} />
+  </body>
+</html>

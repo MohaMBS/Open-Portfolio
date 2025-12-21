@@ -1,0 +1,236 @@
+{
+  "basics": {
+    "name": "Dr. Gordon Freeman",
+    "label": "Theoretical Physicist & Crowbar Expert",
+    "email": "gordon.freeman@blackmesa.org",
+    "image": "https://upload.wikimedia.org/wikipedia/en/2/20/Gordon_Freeman.png",
+    "phone": "(+1) 555-LAMBDA",
+    "url": "https://blackmesa.org",
+    "summary": "MIT Ph.D. graduate specializing in Theoretical Physics and inter-dimensional survival. Highly experienced in 'unscheduled' hazardous environment navigation, zero-point energy manipulation, and solving complex problems with a red crowbar. Known for strong listening skills (I never speak).",
+    "location": {
+      "city": "Black Mesa",
+      "countryCode": "US",
+      "region": "New Mexico"
+    },
+    "profiles": [
+      {
+        "network": "Steam",
+        "username": "TheOneFreeMan",
+        "url": "https://steamcommunity.com/id/gordonFreeman"
+      },
+      {
+        "network": "Black Mesa Intranet",
+        "username": "gfreeman",
+        "url": "https://balck-mesa.com/id/gordonFreeman"
+      }
+    ],
+    "i18n": {
+      "es": {
+        "label": "Físico Teórico y Experto en Palancas",
+        "summary": "Doctorado por el MIT especializado en Física Teórica y supervivencia interdimensional. Gran experiencia en navegación de entornos peligrosos 'no programados', manipulación de energía de punto cero y resolución de problemas complejos a palancazos. Conocido por mis grandes habilidades de escucha (nunca hablo)."
+      }
+    }
+  },
+  "work": [
+    {
+      "name": "The Resistance",
+      "position": "Lead Field Scientist / Rebel Icon",
+      "url": "https://city17.global",
+      "startDate": "2004-11-16",
+      "endDate": null,
+      "summary": "Leading humanity's resistance against the Combine empire across City 17 and White Forest. Promoting open-source freedom via Gravity Gun utilization.",
+      "highlights": [
+        "Reduced local Headcrab population by 85% using manual percussive maintenance (crowbar).",
+        "Successfully navigated Ravenholm (we don't go there anymore).",
+        "Collaborated with Alyx Vance to stabilize the Citadel's dark energy core.",
+        "Demonstrated proficiency with the Zero Point Energy Field Manipulator (Gravity Gun)."
+      ],
+      "i18n": {
+        "es": {
+          "position": "Científico de Campo Líder / Icono Rebelde",
+          "summary": "Liderando la resistencia humana contra el imperio Combine en Ciudad 17 y White Forest. Promoviendo la libertad mediante el uso de pistolas de gravedad.",
+          "highlights": [
+            "Reduje la población local de Headcrabs un 85% usando mantenimiento percusivo manual (palanca).",
+            "Navegué con éxito por Ravenholm (ya no vamos allí).",
+            "Colaboré con Alyx Vance para estabilizar el núcleo de energía oscura de la Ciudadela.",
+            "Demostré dominio del Manipulador de Campos de Energía de Punto Cero (Pistola de Gravedad)."
+          ]
+        }
+      }
+    },
+    {
+      "name": "Black Mesa Research Facility",
+      "position": "Research Associate",
+      "url": "https://blackmesa.org",
+      "startDate": "2000-05-05",
+      "endDate": "2000-05-19",
+      "summary": "Conducting nuclear and subatomic research in the Anomalous Materials department. Responsible for pushing carts into Anti-Mass Spectrometers.",
+      "highlights": [
+        "Successfully put on the HEV Mark IV Protective Suit.",
+        "Pushed the crystal sample into the beam (was told it was safe).",
+        "Survived the subsequent Resonance Cascade and inter-dimensional alien invasion.",
+        "Defeated the Nihilanth in the border world Xen."
+      ],
+      "i18n": {
+        "es": {
+          "position": "Asociado de Investigación",
+          "summary": "Investigación nuclear y subatómica en el departamento de Materiales Anómalos. Responsable de empujar carritos dentro de Espectrómetros Anti-Masa.",
+          "highlights": [
+            "Me puse exitosamente el Traje de Protección HEV Mark IV.",
+            "Empujé la muestra de cristal hacia el rayo (me dijeron que era seguro).",
+            "Sobreviví a la Cascada de Resonancia subsiguiente y a la invasión alienígena interdimensional.",
+            "Derroté al Nihilanth en el mundo fronterizo Xen."
+          ]
+        }
+      }
+    },
+    {
+      "name": "Institute for Experimental Physics",
+      "position": "Visiting Fellow",
+      "startDate": "1999-01-01",
+      "endDate": "2000-04-01",
+      "summary": "Teleportation experiments assisting Dr. Kleiner.",
+      "i18n": {
+        "es": {
+          "position": "Becario Visitante",
+          "summary": "Experimentos de teletransportación asistiendo al Dr. Kleiner."
+        }
+      }
+    }
+  ],
+  "education": [
+    {
+      "institution": "MIT (Massachusetts Institute of Technology)",
+      "url": "https://mit.edu",
+      "area": "Theoretical Physics",
+      "studyType": "Ph.D.",
+      "startDate": "1990-09-01",
+      "endDate": "1999-05-15",
+      "score": "Summa Cum Laude",
+      "courses": [
+        "Quantum Mechanics",
+        "Relative Teleportation",
+        "Advanced Crowbar Dynamics"
+      ],
+      "i18n": {
+        "es": {
+          "area": "Física Teórica",
+          "courses": [
+            "Mecánica Cuántica",
+            "Teletransportación Relativa",
+            "Dinámica Avanzada de Palancas"
+          ]
+        }
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "Combat & Survival",
+      "level": "Expert",
+      "keywords": [
+        "Crowbar Mastery",
+        "HEV Suit Operation",
+        "Firearms",
+        "Buggy Driving",
+        "Airboat Piloting"
+      ],
+      "i18n": {
+        "es": {
+          "name": "Combate y Supervivencia",
+          "keywords": [
+            "Maestría con Palanca",
+            "Operación de Traje HEV",
+            "Armas de Fuego",
+            "Conducción de Buggy",
+            "Pilotaje de Hidrodeslizador"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Science",
+      "level": "Master",
+      "keywords": [
+        "Theoretical Physics",
+        "Quantum Tunneling",
+        "Dark Energy",
+        "Laser Tripping"
+      ],
+      "i18n": {
+        "es": {
+          "name": "Ciencia",
+          "keywords": [
+            "Física Teórica",
+            "Túneles Cuánticos",
+            "Energía Oscura",
+            "Activación de Láseres"
+          ]
+        }
+      }
+    }
+  ],
+  "projects": [
+    {
+      "name": "Zero Point Energy Field Manipulator",
+      "description": "Field testing the 'Gravity Gun' in high-stress environments. Used to clear debris, solve physics puzzles, and play fetch with Dog.",
+      "isActive": true,
+      "url": "https://combine-overwiki.net/wiki/Gravity_Gun",
+      "highlights": [
+        "Lifted heavy objects",
+        "Punished Combine soldiers"
+      ],
+      "keywords": ["Physics", "Gravity", "Tool"],
+      "i18n": {
+        "es": {
+          "name": "Manipulador de Campo de Energía de Punto Cero",
+          "description": "Pruebas de campo de la 'Pistola de Gravedad' en entornos de alto estrés. Usada para limpiar escombros, resolver puzzles físicos y jugar con Dog.",
+          "highlights": [
+            "Levantamiento de objetos pesados",
+            "Castigo a soldados Combine"
+          ],
+          "keywords": ["Física", "Gravedad", "Herramienta"]
+        }
+      }
+    },
+    {
+      "name": "Lambda Locator App",
+      "description": "A hidden cache tracking system to find supplies marked with the Lambda logo across Eastern Europe.",
+      "isActive": false,
+      "keywords": ["Navigation", "Survival"],
+      "i18n": {
+        "es": {
+          "name": "App Lambda Locator",
+          "description": "Un sistema de rastreo de alijos ocultos marcados con el logo Lambda en Europa del Este.",
+          "keywords": ["Navegación", "Supervivencia"]
+        }
+      }
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native (Silent)",
+      "i18n": {
+        "es": {
+          "language": "Inglés",
+          "fluency": "Nativo (Silencioso)"
+        }
+      }
+    },
+    {
+      "language": "Vortigese",
+      "fluency": "Basic Listening",
+      "i18n": {
+        "es": {
+          "language": "Vortigese",
+          "fluency": "Escucha Básica"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "version": "1.0.0",
+    "lastModified": "2023-10-27T12:00:00.000Z"
+  }
+}

@@ -1,0 +1,358 @@
+---
+// src/themes/minimal/index.astro
+import type { CV } from "@/schemas/cv";
+import { Image } from "astro:assets";
+
+interface Props {
+  cv: CV;
+}
+
+const { cv } = Astro.props;
+const { basics, work, skills, projects, education } = cv;
+
+// --- ICONOS
+const Icons = {
+  GitHub: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`,
+  LinkedIn: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+  Mail: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+  Globe: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+  Phone: `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`,
+  Link: `<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>`,
+};
+
+function getSocialIcon(network: string) {
+  if (network.toLowerCase().includes("github")) return Icons.GitHub;
+  if (network.toLowerCase().includes("linkedin")) return Icons.LinkedIn;
+  return Icons.Globe;
+}
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<style is:global>
+  :root {
+    --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc; /* Slate-50 */
+    color: #1e293b; /* Slate-800 */
+    line-height: 1.6;
+  }
+
+  /* Ajustes para impresión perfecta */
+  @media print {
+    body {
+      background-color: white;
+    }
+    .no-print {
+      display: none !important;
+    }
+    .print-break-inside-avoid {
+      break-inside: avoid;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    .shadow-xl {
+      shadow: none;
+    }
+  }
+</style>
+
+<div class="min-h-screen py-8 md:py-16 px-4 sm:px-6">
+  <main
+    class="max-w-[800px] mx-auto bg-white shadow-xl shadow-slate-200/60 rounded-xl overflow-hidden print:shadow-none print:rounded-none print:max-w-none"
+  >
+    <header
+      class="p-8 md:p-12 border-b border-slate-100 bg-gradient-to-br from-white to-slate-50/50"
+    >
+      <div class="flex flex-col-reverse md:flex-row justify-between gap-8">
+        <div class="flex-1 space-y-4">
+          <div>
+            <h1
+              class="text-4xl md:text-5xl font-bold tracking-tight text-slate-900 leading-tight"
+            >
+              {basics.name}
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 font-medium mt-1">
+              {basics.label}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 text-sm text-slate-600">
+            {
+              basics.location && (
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700">
+                  <svg
+                    class="w-3.5 h-3.5 text-slate-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <>
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </>
+                  </svg>
+                  {basics.location.city}, {basics.location.countryCode}
+                </div>
+              )
+            }
+            {
+              basics.email && (
+                <a
+                  href={`mailto:${basics.email}`}
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 hover:border-slate-300 transition-colors"
+                >
+                  <span class="text-slate-400">
+                    <Fragment set:html={Icons.Mail} />
+                  </span>
+                  {basics.email}
+                </a>
+              )
+            }
+            {
+              basics.phone && (
+                <a
+                  href={`tel:${basics.phone}`}
+                  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-slate-700 hover:bg-slate-200 transition-colors"
+                >
+                  <span class="text-slate-400">
+                    <Fragment set:html={Icons.Phone} />
+                  </span>
+                  {basics.phone}
+                </a>
+              )
+            }
+          </div>
+
+          {
+            basics.profiles && (
+              <div class="flex gap-3 pt-2">
+                {basics.profiles.map((profile) => (
+                  <a
+                    href={profile.url}
+                    target="_blank"
+                    class="p-2 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all"
+                    aria-label={profile.network}
+                  >
+                    <Fragment set:html={getSocialIcon(profile.network)} />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        {/* Avatar */}
+        {
+          basics.image && (
+            <div class="shrink-0">
+              <Image
+                src={basics.image}
+                alt={basics.name}
+                width={144}
+                height={144}
+                class="w-32 h-32 md:w-36 md:h-36 rounded-2xl object-cover shadow-lg shadow-slate-200 rotate-1 hover:rotate-0 transition-transform duration-500 border-4 border-white"
+              />
+            </div>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="p-8 md:p-12 space-y-16">
+      {
+        basics.summary && (
+          <section>
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+              Sobre Mí <span class="h-px bg-slate-200 flex-1" />
+            </h2>
+            <p class="text-slate-600 leading-relaxed text-base">
+              {basics.summary}
+            </p>
+          </section>
+        )
+      }
+
+      {
+        work && work.length > 0 && (
+          <section>
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8 flex items-center gap-2">
+              Experiencia <span class="h-px bg-slate-200 flex-1" />
+            </h2>
+
+            <div class="space-y-0 relative border-l-2 border-slate-200 ml-3 md:ml-0 md:border-none">
+              {work.map((job, index) => (
+                <div class="relative pl-8 md:pl-0 mb-12 last:mb-0 group print-break-inside-avoid">
+                  <div
+                    class={`hidden md:block absolute left-0 top-7 bottom-[-48px] w-px bg-slate-200 -z-10 ${index === work.length - 1 ? "hidden" : ""}`}
+                  />
+
+                  <div class="md:grid md:grid-cols-4 md:gap-8">
+                    <div class="md:col-span-1 mb-1 md:mb-0">
+                      <span class="inline-block text-xs font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded md:bg-transparent md:px-0 md:py-0 md:text-slate-400 tabular-nums">
+                        {job.startDate} — {job.endDate || "Actualidad"}
+                      </span>
+                    </div>
+
+                    <div class="md:col-span-3 relative">
+                      <div class="md:hidden absolute -left-[39px] top-1.5 w-3 h-3 rounded-full bg-slate-300 border-2 border-white" />
+
+                      <h3 class="font-bold text-lg text-slate-900 group-hover:text-indigo-600 transition-colors">
+                        {job.position}
+                      </h3>
+                      <div class="text-sm font-medium text-slate-600 mb-3">
+                        {job.url ? (
+                          <a
+                            href={job.url}
+                            target="_blank"
+                            class="hover:underline decoration-slate-300 underline-offset-2 hover:decoration-indigo-400"
+                          >
+                            {job.name}
+                          </a>
+                        ) : (
+                          job.name
+                        )}
+                      </div>
+
+                      <p class="text-slate-600 text-sm leading-relaxed mb-4">
+                        {job.summary}
+                      </p>
+
+                      {job.highlights && (
+                        <ul class="space-y-2">
+                          {job.highlights.map((h) => (
+                            <li class="flex items-start gap-2.5 text-sm text-slate-500">
+                              <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500/50 shrink-0 group-hover:bg-indigo-500 transition-colors" />
+                              <span>{h}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        projects && projects.length > 0 && (
+          <section>
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+              Proyectos Destacados <span class="h-px bg-slate-200 flex-1" />
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {projects.map((project) => (
+                <a
+                  href={project.url || project.github}
+                  target="_blank"
+                  class="group block p-5 bg-slate-50 rounded-xl border border-slate-100 hover:border-slate-300 hover:shadow-md hover:bg-white transition-all duration-300 print-break-inside-avoid"
+                >
+                  <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                      {project.name}
+                    </h3>
+                    <div class="text-slate-300 group-hover:text-indigo-500 transition-colors">
+                      <Fragment set:html={Icons.Link} />
+                    </div>
+                  </div>
+
+                  <p class="text-sm text-slate-600 mb-4 line-clamp-2 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div class="flex flex-wrap gap-2">
+                    {project.keywords?.slice(0, 4).map((k) => (
+                      <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white text-slate-500 border border-slate-200 group-hover:border-indigo-100 group-hover:text-indigo-600 transition-colors">
+                        {k}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        skills && skills.length > 0 && (
+          <section>
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+              Habilidades Técnicas <span class="h-px bg-slate-200 flex-1" />
+            </h2>
+            <div class="flex flex-wrap gap-2">
+              {skills
+                .flatMap((s) => s.keywords)
+                .map((skill) => (
+                  <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 text-sm font-medium rounded-lg shadow-sm hover:border-indigo-300 hover:text-indigo-600 hover:shadow-md transition-all cursor-default select-none">
+                    {skill}
+                  </span>
+                ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        education && education.length > 0 && (
+          <section>
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+              Educación <span class="h-px bg-slate-200 flex-1" />
+            </h2>
+            <div class="grid gap-6">
+              {education.map((edu) => (
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center p-4 rounded-lg bg-slate-50 border border-slate-100 print-break-inside-avoid">
+                  <div>
+                    <h3 class="font-bold text-slate-900">{edu.institution}</h3>
+                    <p class="text-sm text-slate-600">
+                      {edu.studyType}, {edu.area}
+                    </p>
+                  </div>
+                  <div class="mt-2 sm:mt-0 text-xs font-medium text-slate-400 bg-white px-2 py-1 rounded border border-slate-100 tabular-nums">
+                    {edu.startDate} — {edu.endDate || "Present"}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </div>
+
+    <footer
+      class="bg-slate-50 border-t border-slate-100 p-8 text-center no-print"
+    >
+      <p class="text-sm text-slate-400">
+        &copy; {new Date().getFullYear()}
+        {basics.name}.
+        <span class="mx-2 opacity-50">•</span>
+        Built with <a href="#" class="hover:text-indigo-500 transition-colors"
+          >Open Portfolio</a
+        >
+      </p>
+    </footer>
+  </main>
+</div>
