@@ -98,7 +98,7 @@ You need **Node.js 18+** and **Bun** (recommended) or NPM/PNPM.
 
 ```bash
 # Clone the repository
-git clone [https://github.com/MohaMBS/Open-Portfolio.git] 
+git clone https://github.com/MohaMBS/Open-Portfolio.git 
 
 # Enter the directory
 cd open-portfolio
