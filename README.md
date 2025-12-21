@@ -32,7 +32,7 @@ The framework acts as a pipeline that transforms your raw JSON data into a perfo
 ```mermaid
 graph LR
     A[User Config] --> D{Core Engine}
-    B[CV Content (JSON)] --> D
+    B[CV Content `JSON`] --> D
     C[Selected Theme] --> D
     
     subgraph "Core Engine (Build Time)"
