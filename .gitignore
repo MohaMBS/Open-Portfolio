@@ -260,3 +260,10 @@ scripts/lldb-inline
 
 # We regenerate these in all the build scripts
 cmake/sources/*.txt
+
+#Local folder fot tests
+test/*
+test
+
+#Ignore my real cv file
+src/content/cv/myProfile.json
