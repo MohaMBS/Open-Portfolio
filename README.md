@@ -16,7 +16,7 @@
 - [x] **Automated i18n** (Routing & Fallbacks)
 - [x] **Decoupled Theme System** (Switch themes easily)
 - [x] **Extreme Performance** (Static build, Asset optimization)
-- [ ] **Security** (CSP, Sanitization `In development`)
+- [x] **Security** (CSP, Sanitization)
 - [ ] **Download CV as PDF** (`In development`)
 - [ ] **Download Themplates from github** (`In development`)
 
@@ -85,7 +85,7 @@ sequenceDiagram
 * **🌍 Automated i18n:** Just add translations to your JSON objects. The framework automatically generates routes (e.g., `/es`, `/en`) and handles fallback logic.
 * **🎨 Decoupled Theme System:** Switch from a "Minimal" look to a "Cyberpunk" look by changing **one line** of code. Themes are installed via CLI.
 * **⚡ Extreme Performance:** Images are optimized at build time using `astro:assets` (WebP generation).
-* **🔒 Enterprise Security:** Automatic CSP injection and JSON sanitization.
+* **🔒 Basic Security:** Automatic CSP injection and JSON sanitization.
 
 ---
 

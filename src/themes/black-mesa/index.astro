@@ -1,5 +1,4 @@
 ---
-// src/themes/black-mesa/index.astro
 import type { CV } from '@/schemas/cv';
 
 interface Props {
@@ -9,29 +8,21 @@ interface Props {
 const { cv } = Astro.props;
 const { basics, work, skills, projects } = cv;
 
-// --- ASSETS SVG (Optimizados para no romper el layout) ---
 const LambdaIcon = `<svg viewBox="0 0 32 32" class="w-full h-full fill-current"><path d="M16 0C7.163 0 0 7.163 0 16s7.163 16 16 16 16-7.163 16-16S24.837 0 16 0zm-1.5 24h-4l6-14h2l6 14h-4l-1-3h-4l-1 3zm2.5-10.5L15.5 18h3L17 13.5z"/></svg>`;
 const HealthIcon = `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h-full"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-1 11h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>`;
 ---
 
 <style is:global>
-  /* Reset básico para asegurar que el tema tome toda la pantalla */
   body {
     margin: 0;
     background-color: #050505 !important;
     overflow-x: hidden;
   }
-
-  /* Tipografías */
   .font-military { font-family: 'Black Ops One', system-ui, sans-serif; }
   .font-terminal { font-family: 'Share Tech Mono', monospace; }
-
-  /* Efecto de Ruido de Fondo */
   .bg-noise {
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
-
-  /* Efecto Scanlines (CRT) */
   .scanlines {
     background: linear-gradient(
       to bottom,
@@ -43,8 +34,6 @@ const HealthIcon = `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h
     background-size: 100% 4px;
     pointer-events: none;
   }
-
-  /* Rayas de Peligro */
   .hazard-stripes {
     background-image: repeating-linear-gradient(
       45deg,
@@ -55,7 +44,6 @@ const HealthIcon = `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h
     );
   }
 
-  /* Animaciones */
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
   .animate-blink { animation: blink 2s infinite; }
   
@@ -280,17 +268,5 @@ const HealthIcon = `<svg viewBox="0 0 24 24" fill="currentColor" class="w-full h
             </section>
         </main>
     </div>
-
-    <footer class="mt-auto pt-12 pb-6 text-center opacity-60">
-        <div class="flex justify-center mb-2">
-            <div class="h-1 w-24 bg-orange-600/50"></div>
-        </div>
-        <div class="text-[10px] text-orange-500 uppercase tracking-[0.2em] mb-1">
-            Black Mesa Research Facility
-        </div>
-        <div class="text-[10px] text-zinc-600">
-            &copy; {new Date().getFullYear()} Authorized Personnel Only.
-        </div>
-    </footer>
   </div>
 </div>

@@ -20,7 +20,7 @@ export const config: PortfolioConfig = {
     routing: { prefixDefaultLocale: false }
   },
   theme: {
-    name: "black-mesa", // If you set "futuristic", TS will give an immediate error thanks to the Enum
+    name: "Black Mesa", // If you set "futuristic", TS will give an immediate error thanks to the Enum
   },
   features: {
     enablePdfDownload: true,

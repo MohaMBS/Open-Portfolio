@@ -9,10 +9,11 @@ Object.keys(components).forEach((path) => {
     const manifestPath = `./${folderName}/manifest.ts`;
     const manifestModule = manifests[manifestPath] as any;
 
-    themes[folderName] = {
+    themes[manifestModule.manifest.name] = {
         component: componentModule.default,
         manifest: manifestModule?.manifest || {
             name: folderName,
+            folderName: folderName,
             fonts: {
                 googleFontsUrl: null,
                 body: 'sans-serif',

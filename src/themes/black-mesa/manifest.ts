@@ -7,4 +7,7 @@ export const manifest = {
         heading: '"Share Tech Mono", monospace',
         mono: '"Share Tech Mono", monospace',
     },
+    colors: {
+        accent: "#ea580c",
+    }
 }

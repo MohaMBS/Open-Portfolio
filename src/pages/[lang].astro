@@ -1,14 +1,14 @@
 ---
+// src/pages/[lang].astro
 import { loadCv } from "@/utils/loadCv";
 import { config } from "@/utils/config";
 import OptionsFab from "@/components/OptionsFab.astro";
 import Seo from "@/components/seo/Seo.astro";
 import "@/styles/global.css";
 
-// IMPORT THEME INDEX (The dynamic loader)
+// IMPORT THEME INDEX
 import { themes } from "@/themes";
 
-//Static path generation
 export function getStaticPaths() {
   return config.i18n.locales.map((lang) => ({
     params: { lang },
@@ -22,13 +22,17 @@ const cv = await loadCv(lang);
 // THEME & FONT RESOLUTION
 // ----------------------------------------------------------------------------
 const themeName = config.theme.name;
-//Get the active theme from our index (Safe fallback to minimal)
 const activeTheme = themes[themeName] || themes["minimal"];
+
 if (!activeTheme) {
   throw new Error(`CRITICAL: Theme '${themeName}' not found.`);
 }
+
 const { component: ThemeComponent, manifest } = activeTheme;
-//Resolve Fonts (User Config > Theme Manifest > System Default)
+
+// Manifest has a accent color if not deafult orange
+const accentColor = activeTheme.manifest.colors?.accent || "#ea580c";
+// User Config > Theme Manifest > System Default
 const userFonts = config.ui?.fonts || {};
 const themeFonts = manifest.fonts || {};
 
@@ -53,10 +57,8 @@ const fonts = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    {/* Load Google Fonts only if URL exists */}
     {fonts.url && <link href={fonts.url} rel="stylesheet" />}
 
-    {/* Inject CSS Variables for Tailwind */}
     <style
       define:vars={{
         fontMain: fonts.body,
@@ -72,8 +74,64 @@ const fonts = {
     </style>
   </head>
 
-  <body>
+  <body
+    class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900"
+  >
+    <div class="flex-grow">
+      <ThemeComponent cv={cv} />
+    </div>
+
     <OptionsFab />
-    <ThemeComponent cv={cv} />
+
+    <footer
+      class="mt-auto w-full max-w-5xl mx-auto px-6 pb-12 pt-20 print:hidden"
+    >
+      <div
+        class="w-full h-px mb-6 opacity-20"
+        style={{ backgroundColor: accentColor }}
+      >
+      </div>
+
+      <div
+        class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-70"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="w-2 h-2 rounded-full shadow-[0_0_8px_currentColor]"
+            style={{ backgroundColor: accentColor, color: accentColor }}></span>
+
+          <span
+            class="uppercase tracking-widest font-bold"
+            style={{
+              fontFamily: fonts.mono,
+              color: accentColor,
+            }}
+          >
+            {themeName} Theme
+          </span>
+        </div>
+
+        <div
+          class="flex flex-col md:items-end gap-1 text-zinc-500 dark:text-zinc-400 text-center md:text-right"
+        >
+          <p>
+            &copy; {new Date().getFullYear()}
+            {cv.basics.name}. All rights reserved.
+          </p>
+
+          <p>
+            Deployed with
+            <a
+              href="https://github.com/TU-USUARIO/open-portfolio"
+              target="_blank"
+              class="font-bold hover:underline transition-all"
+              style={{ color: accentColor }}
+            >
+              Open Portfolio
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
